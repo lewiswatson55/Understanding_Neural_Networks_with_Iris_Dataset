@@ -1,3 +1,21 @@
+---
+title: "Understanding Neural Networks with Iris Dataset"
+date: 2023-01-08
+lastmod: 2023-01-08
+author: "Lewis Watson"
+authorLink: "https://lnwatson.co.uk"
+description: "Intro look at MLP Neural Networks"
+draft: true
+
+tags: [Beginner, AI/ML, Machine Learning]
+categories: [Machine Learning]
+
+hiddenFromHomePage: false
+hiddenFromSearch: false
+
+math: true
+---
+
 # Understanding Neural Networks with Iris Dataset
 
 Today we will specifically look at implementing solutions to classification problems. A classification problem is where we are trying to categorise our input into two or more discrete categories. For example we could be categorising hand drawn numbers, that's A-Z, a-z, 0-9 - This would be a multiclass classification problem with 62 classes. On the other hand, if we are classifying between malignant skin marks vs benign - this would be a binary classification problem.
@@ -68,7 +86,7 @@ Finally, when the network is performing satisfactorily, it is time to deploy it.
 # Lets code
 
 Okay, enough talk, lets code! More specifically lets write and train a multiclass iris classification multilayer perceptron neural network.
-If you would like to code along see here for the IRIS.csv dataset used.
+If you would like to code along see [here](https://github.com/lewiswatson55/Understanding_Neural_Networks_with_Iris_Dataset/blob/master/IRIS.csv) for the IRIS.csv dataset used.
 
 This tutorial will assume you know how to set up a python environment, and also install libraries, we will use: pandas, TensorFlow, and sk-learn
 
