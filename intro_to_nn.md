@@ -1,7 +1,7 @@
 ---
 title: "Understanding Neural Networks with Iris Dataset"
 date: 2023-01-08
-lastmod: 2023-01-09
+lastmod: 2023-08-30
 author: "Lewis Watson"
 authorLink: "https://lnwatson.co.uk"
 description: "Intro look at MLP Neural Networks"
@@ -15,6 +15,8 @@ hiddenFromSearch: false
 
 math: true
 ---
+
+> Future edits may not appear on this github but will be live [here](https://lnwatson.co.uk/posts/intro_to_nn/).
 
 # Understanding Neural Networks with Iris Dataset
 
@@ -42,9 +44,7 @@ The goal of the model is to be able to accurately classify from these features t
 
 Before we start looking at code, lets take a step back and outline the structure of a fully connected neural network (also known as a multilayer perceptron or MLP). Put simply, there are three 'sections'. We have the input layer, our hidden layer(s), and finally the output layer.
 
-
-![Multilayer Perceptron Diagram](https://miro.medium.com/max/828/1*-IPQlOd46dlsutIbUq1Zcw.webp)
-
+![MultiLayer Perceptron Diagram](https://miro.medium.com/max/828/1*-IPQlOd46dlsutIbUq1Zcw.webp)
 
 [Image Source: becominghuman.ai/](https://becominghuman.ai/multi-layer-perceptron-mlp-models-on-real-world-banking-data-f6dd3d7e998f)
 
@@ -56,7 +56,6 @@ Before we start looking at code, lets take a step back and outline the structure
 It can be useful to think of a neuron as an object, like in oop, where each neuron has properties/functions such as inputs, weights, bias, activation function, and output. Each neuron is connected to all the other neurons in the next layer, and the 'weights' or the strength of these connections form the weight matrix.
 
 ### Neuron Activation
-
 The output of a neuron is calculated by applying the "activation function" to the weighted sum of inputs and bias. I will go more into details about activation functions at a later date, but for now just know they are the *functions used to decide the output of a neuron.*
 
 A Neuron also has a bias, this is a value added to the weighted sum of inputs of a neuron, and is used to shift the activation function (f) to the left or right.
@@ -64,19 +63,18 @@ A Neuron also has a bias, this is a value added to the weighted sum of inputs of
 Finally, the output of a neuron is the result of the activation function being applied to the weighted sum of inputs and bias.
 
 ### Network
-
 The whole network is just a collection of neurons connected together in layers. The input layer takes the data we are feeding into the network, and each successive layer is the output of the previous layer, until we reach the output layer.
 
 Once we have the output of the output layer, we can interpret it to get the result of the network. In the case of a classification task, these outputs can be interpreted as probabilities of the data belonging to each class.
 
-----
+---
 
 Okay hopefully that didn't scare you away. I promise it'll make sense, lets now look at how a neural network 'learns'.
 
 
 # Training a neural network
 
-In this example we will only look at supervised learning. This is when we have the model 'learn' aka train using known correct input output pairs. Learning can be though of as an optimisation problem, aiming to map these sample pairs. So what are the steps?
+In this example we will only look at supervised learning. This is when we have the model ‘learn’ aka train using known correct input output pairs. Learning can be though of as an optimisation problem, aiming to map these sample pairs. So what are the steps?
 
 ## Outline - Stages of training
 
@@ -90,7 +88,7 @@ This means that we have to start with an input layer that has four neurons (one 
 In-between, we have the hidden layers. There can be an endless number of them, the more layers a network has the 'deeper' it is. This is where the term Deep Neural Network comes from - this will also be a topic at a later date.
 
 ### Training (Scary!)
-The training stage is when we adjust the weights and biases for the neurons in our network, this 'adjusting' of the strengths of the features connections to each other neuron. This optimisation of the weights and biases is done using an algorithm such as gradient descent. Generally speaking, we are optimising the weights and biases such that our training data's inputs (the features) match their outputs (labels).
+The training stage is when we adjust the weights and biases for the neurons in our network, this ‘adjusting’ of the strengths of the features connections to each other neuron. This optimisation of the weights and biases is done using an algorithm such as gradient descent. Generally speaking, we are optimising the weights and biases such that our training data’s inputs (the features) match their outputs (labels).
 
 ### Evaluation, Hyperparameter optimisation, and Re-Training!
 The evaluation stage is when we measure the performance of our network against unseen data. If the network is performing well, we can go back and try to improve the performance by tweaking the hyperparameters. These hyperparameters are the settings of the network such as the learning rate (how fast we want to make changes), the number of hidden layers, and the number of neurons in each layer. Once these hyperparameters have been adjusted, we can then go back to the training stage and re-train the network.
@@ -98,14 +96,13 @@ The evaluation stage is when we measure the performance of our network against u
 ### Deployment
 Finally, when the network is performing satisfactorily, it is time to deploy it. This can be done by exporting the model weights and biases and using them in a production-ready system. This system can then be used to predict the output of unseen data, or even to control a physical system such as a robot or an autonomous car.
 
----
 
-## Let's write a MLP
+## Let's build a MLP
 
 Okay, enough talk, lets code! More specifically lets write and train a multiclass iris classification multilayer perceptron neural network.
-If you would like to code along [see here for the IRIS.csv dataset used.](https://github.com/lewiswatson55/Understanding_Neural_Networks_with_Iris_Dataset/blob/master/IRIS.csv)
+If you would like to code along [see here for the IRIS.csv dataset used.](https://github.com/lewiswatson55/Understanding_Neural_Networks_with_Iris_Dataset/blob/master/IRIS.csv) 
 
-This tutorial will assume you know how to set up a python environment, and also install libraries, we will use: Pandas, TensorFlow, and Sk-learn
+This tutorial will assume you know how to set up a python environment, and also install libraries, we will use: Pandas, TensorFlow, and sk-learn
 
 ### Import our libraries and get set up
 
@@ -122,7 +119,7 @@ Pandas is a pretty standard library to use in machine learning and data science 
 
 Most importantly, we need to load in our IRIS.csv dataset. Out of interest, the dataset we are using is public domain and can be found [here](https://www.kaggle.com/datasets/uciml/iris)
 
-However, the version I'm using has been slightly modified and can be downloaded from my github [here](https://github.com/lewiswatson55/Understanding_Neural_Networks_with_Iris_Dataset/blob/master/IRIS.csv).
+However, the version I'm using has been slightly modified and can be [downloaded from my github here](https://github.com/lewiswatson55/Understanding_Neural_Networks_with_Iris_Dataset/blob/master/IRIS.csv). Alternatively, uncomment the last line in the code provided below.
 
 ### Loading our dataset into a dataframe
 
@@ -131,10 +128,13 @@ However, the version I'm using has been slightly modified and can be downloaded 
 df = pd.read_csv('iris.csv', names=['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species'])
 # extract the last column as the labels
 labels = df.pop('species')
+# df.pop('Id') # Uncomment this line if you downloaded the iris dataset directly from kaggle
 ```
 
-Okay to first we are using pandas to read the csv dataset and we are also telling it the name of the columns.
+Okay first we are using pandas to read the csv dataset and we are also telling it the name of the columns.
 Then we use the pop method to extract the species column into its own dataframe.
+
+Optionally, we might need to remove the 'Id' column if the dataset was downloaded directly from kaggle or somewhere else - we want to ensure our dataframe (df in example code is) containing our inputs and nothing else.
 
 Before we move on lets quickly discuss one-hot encoding.
 
@@ -209,7 +209,7 @@ The second hidden layer uses three neurons, this will be our output layer for th
 We also use an activation function, which we recall from earlier where we said is the function that takes the sum of the weights and bias to give our output. Well the two different activation functions used in this model are used to create different types of outputs depending on the type of layer. The first activation function, ReLU (rectified linear unit), is used in the first layer to create a non-linear output, which helps the model to better learn complex patterns in the data. The second activation function, softmax, is used in the second layer to create a probability output, which allows the model to assign a probability to each of the possible classes.
 
 
-#### Compile the model!
+### Compile the model!
 
 ```python
 # Compile the model
@@ -253,3 +253,7 @@ And that is it! We have now successfully built and trained a deep learning model
 I hope this tutorial gave you a better understanding of what goes into building and training a neural network and how to do it.
 
 Try to see if you can make the model deeper, by adding more layers. You can also play with the hyperparameters to see how that changes the results. Maybe try graphing the loss and accuracy as the model trains. Another good thing to learn/use is early stopping, read about it [here](https://keras.io/api/callbacks/early_stopping/).
+
+
+> Quesitons or want to chat about this post? Shoot me an [email](mailto://lewiswatson55@hotmail.co.uk) or message/tweet over on twitter: [![Twitter](https://img.shields.io/twitter/follow/LewisNWatson?style=flat)](https://twitter.com/LewisNWatson)
+
